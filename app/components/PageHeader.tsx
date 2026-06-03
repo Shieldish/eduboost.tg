@@ -1,5 +1,5 @@
 /**
- * PageHeader.tsx — Header commun à toutes les pages (sauf landing)
+ * PageHeader.tsx - Header commun à toutes les pages (sauf landing)
  *
  * Utilisé par : /ticket, /confirmation, /mes-tickets
  * La landing page a sa propre navbar complète avec menu.
@@ -18,11 +18,11 @@ interface PageHeaderProps {
 export default function PageHeader({ secure = true, title }: PageHeaderProps) {
   return (
     <header className="bg-[#FFD100] px-4 sm:px-6 py-3 flex items-center justify-between shadow sticky top-0 z-40">
-      {/* Logo YAS TOGO — cliquable, redirige vers l'accueil */}
+      {/* Logo YAS TOGO - cliquable, redirige vers l'accueil */}
       <Link href="/" className="flex items-center gap-2 flex-shrink-0">
         <Image
           src="/yas-logo.png"
-          alt="YAS TOGO — Retour à l'accueil"
+          alt="YAS TOGO - Retour à l'accueil"
           width={52}
           height={44}
           className="object-contain h-10 w-auto"
@@ -30,7 +30,7 @@ export default function PageHeader({ secure = true, title }: PageHeaderProps) {
         />
       </Link>
 
-      {/* Titre central : "ÉduBoost — La Grande Tombola Solidaire" */}
+      {/* Titre central : "ÉduBoost - La Grande Tombola Solidaire" */}
       <div className="flex items-center gap-2">
         <div
           className="text-[#00377D] font-black text-base sm:text-lg italic hidden sm:block"
@@ -55,7 +55,7 @@ export default function PageHeader({ secure = true, title }: PageHeaderProps) {
             <span className="hidden sm:inline">Paiement sécurisé</span>
           </div>
         )}
-        {/* Lien "Mes tickets" — visible sur toutes les pages sauf /mes-tickets */}
+        {/* Lien "Mes tickets" - visible sur toutes les pages sauf /mes-tickets */}
         <Link
           href="/mes-tickets"
           className="hidden sm:flex items-center gap-1 text-[#00377D] font-semibold text-xs

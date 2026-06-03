@@ -1,5 +1,5 @@
 /**
- * layout.tsx — Layout racine de l'application GTE Frontend
+ * layout.tsx - Layout racine de l'application GTE Frontend
  *
  * Rôle : enveloppe toutes les pages avec :
  *   - Les métadonnées SEO (titre, description, Open Graph)
@@ -18,13 +18,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "GTE — La Grande Tombola pour l'Education | YAS TOGO",
+  title: "GTE - La Grande Tombola pour l'Education | YAS TOGO",
   description:
     "Participez à GTE, la Grande Tombola pour l'Education organisée par YAS TOGO. " +
-    "Ticket 250 FCFA — Prix total 10 000 000 FCFA. Tirage en direct le 01/09/2026.",
+    "Ticket 250 FCFA - Prix total 10 000 000 FCFA. Tirage en direct le 01/09/2026.",
   // TODO prod : ajouter openGraph avec og:image
   // openGraph: {
-  //   title: "EduBoost — La Grande Tombola Solidaire",
+  //   title: "EduBoost - La Grande Tombola Solidaire",
   //   description: "...",
   //   images: [{ url: "https://www.eduboost.tg/og-image.jpg", width: 1200, height: 630 }],
   // },
@@ -59,7 +59,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col antialiased">
-        {/* Skip link — accessible au clavier, invisible visuellement sauf au focus */}
+        {/* Skip link - accessible au clavier, invisible visuellement sauf au focus */}
         <a
           href="#main-content"
           className="sr-only focusable fixed top-4 left-4 z-[9999] bg-[#FFD100] text-[#00377D] font-bold px-4 py-2 rounded-xl shadow-lg"

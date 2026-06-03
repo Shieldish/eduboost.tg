@@ -1,23 +1,9 @@
-/**
- * confirmation/page.tsx — Page de confirmation après achat réussi
- *
- * Sécurité :
- *   Les données (codes, numéro, montant) sont lues depuis sessionStorage
- *   et NON depuis l'URL. Cela évite leur présence dans :
- *   - L'historique du navigateur
- *   - Les logs Nginx / Gunicorn
- *   - Les referrer headers
- *
- *   Lecture unique (readConfirmation efface après lecture).
- *   Expiration 5 minutes.
- */
-
 "use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { readConfirmation, type ConfirmationData } from "@/lib/confirmation-store";
+import { readConfirmation, clearConfirmation, type ConfirmationData } from "@/lib/confirmation-store";
 import PageHeader from "../components/PageHeader";
 import PageFooter from "../components/PageFooter";
 
@@ -28,14 +14,20 @@ function ConfirmationContent() {
 
   useEffect(() => {
     const confirmation = readConfirmation();
-    if (!confirmation) {
-      // Pas de données ou expirées → retour à l'accueil
-      router.replace("/");
-      return;
-    }
-    setData(confirmation);
-    setLoading(false);
-  }, [router]);
+    // Différer le setState hors du corps synchrone de l'effet (règle React)
+    const t = setTimeout(() => {
+      if (!confirmation) {
+        router.replace("/");
+        return;
+      }
+      setData(confirmation);
+      setLoading(false);
+      // Nettoyer localStorage après affichage
+      setTimeout(() => clearConfirmation(), 500);
+    }, 0);
+    return () => clearTimeout(t);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (loading) {
     return (
@@ -51,9 +43,7 @@ function ConfirmationContent() {
   if (!data) return null;
 
   const { ref, codes, qty, total, phone } = data;
-  const masked = phone.length >= 4
-    ? phone.slice(0, 2) + " XX XX " + phone.slice(-2)
-    : phone;
+  const masked = phone.length >= 4 ? phone.slice(0, 2) + " XX XX " + phone.slice(-2) : phone;
 
   return (
     <div className="page-wrapper min-h-screen flex flex-col bg-[#F8F9FB]">
@@ -80,7 +70,7 @@ function ConfirmationContent() {
             Votre achat a été effectué avec succès.
           </p>
 
-          {/* Détails */}
+          {/* Détails commande */}
           <div className="border border-gray-100 rounded-2xl divide-y divide-gray-100 text-left mb-6">
             {[
               { icon: "bi-ticket-perforated-fill", label: "Référence de Paiement", value: ref },
@@ -110,14 +100,11 @@ function ConfirmationContent() {
                 </h2>
                 <div className="h-px flex-1 bg-gray-100" aria-hidden="true" />
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" role="list" aria-label="Liste de vos codes tickets">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" role="list" aria-label="Codes tickets">
                 {codes.map((code, i) => (
-                  <div
-                    key={code}
-                    role="listitem"
+                  <div key={code} role="listitem"
                     className="bg-[#00377D] text-[#FFD100] font-black text-center py-2.5 px-3 rounded-xl text-sm tracking-widest"
-                    style={{ fontFamily: "'Montserrat', sans-serif" }}
-                  >
+                    style={{ fontFamily: "'Montserrat', sans-serif" }}>
                     <div className="text-white/40 text-xs font-normal mb-0.5">#{i + 1}</div>
                     {code}
                   </div>
@@ -132,20 +119,14 @@ function ConfirmationContent() {
 
           {/* Boutons */}
           <div className="flex flex-col sm:flex-row gap-3 mb-6">
-            <button
-              onClick={() => window.print()}
-              className="flex-1 border-2 border-[#00377D] text-[#00377D] font-bold py-3.5 rounded-2xl hover:bg-gray-50 active:bg-gray-100 transition flex items-center justify-center gap-2 min-h-[52px]"
-            >
-              <i className="bi bi-download" aria-hidden="true" />
-              Télécharger le reçu
+            <button onClick={() => window.print()}
+              className="flex-1 border-2 border-[#00377D] text-[#00377D] font-bold py-3.5 rounded-2xl hover:bg-gray-50 transition flex items-center justify-center gap-2 min-h-[52px]">
+              <i className="bi bi-download" aria-hidden="true" /> Télécharger le reçu
             </button>
-            <Link
-              href="/"
+            <Link href="/"
               className="flex-1 bg-[#00377D] text-white font-bold py-3.5 rounded-2xl hover:bg-[#002A5E] transition flex items-center justify-center gap-2 min-h-[52px]"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
-            >
-              <i className="bi bi-house-fill" aria-hidden="true" />
-              Retour à l&apos;accueil
+              style={{ fontFamily: "'Montserrat', sans-serif" }}>
+              <i className="bi bi-house-fill" aria-hidden="true" /> Retour à l&apos;accueil
             </Link>
           </div>
 
@@ -153,8 +134,7 @@ function ConfirmationContent() {
           <div className="bg-blue-50 border border-blue-100 rounded-2xl px-4 py-3 flex items-start gap-3 text-left">
             <i className="bi bi-info-circle-fill text-blue-500 text-lg flex-shrink-0 mt-0.5" aria-hidden="true" />
             <p className="text-blue-700 text-sm leading-relaxed">
-              Vos tickets ont également été envoyés par SMS au{" "}
-              <strong>+228 {masked}</strong>.
+              Vos tickets ont également été envoyés par SMS au <strong>+228 {masked}</strong>.
             </p>
           </div>
         </div>

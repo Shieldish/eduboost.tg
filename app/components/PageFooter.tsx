@@ -1,5 +1,5 @@
 /**
- * PageFooter.tsx — Footer compact commun à toutes les pages (sauf landing)
+ * PageFooter.tsx - Footer compact commun à toutes les pages (sauf landing)
  *
  * Utilisé par : /ticket, /confirmation, /mes-tickets
  *
@@ -32,7 +32,7 @@ export default function PageFooter() {
     <footer className="bg-[#002A5E] text-white px-4 py-5 safe-bottom">
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
 
-        {/* Logo YAS — image réelle sur fond #FFD100 (identique au header) */}
+        {/* Logo YAS - image réelle sur fond #FFD100 (identique au header) */}
         <div className="flex items-center gap-2">
           <div className="bg-[#FFD100] rounded-xl p-1.5 flex items-center justify-center">
             <Image
@@ -53,7 +53,7 @@ export default function PageFooter() {
           YAS TOGO, engagé pour l&apos;éducation et l&apos;avenir de la jeunesse.
         </p>
 
-        {/* Icônes réseaux sociaux — visibles explicitement en blanc */}
+        {/* Icônes réseaux sociaux - visibles explicitement en blanc */}
         <div className="flex gap-2">
           {SOCIALS.map(({ icon, href, label }) => (
             <a
@@ -74,7 +74,7 @@ export default function PageFooter() {
                 (e.currentTarget as HTMLAnchorElement).style.color = "#ffffff";
               }}
             >
-              {/* Bootstrap Icon — classe "bi bi-facebook" etc. */}
+              {/* Bootstrap Icon - classe "bi bi-facebook" etc. */}
               <i className={`bi ${icon} text-sm`} />
             </a>
           ))}

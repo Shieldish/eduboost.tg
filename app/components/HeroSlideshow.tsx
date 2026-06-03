@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const SLIDES = [
-  { src: "/adds.png",  alt: "Étudiants YAS TOGO — EduBoost La Grande Tombola Solidaire" },
-  { src: "/adds2.png", alt: "EduBoost — Jouons aujourd'hui, construisons l'avenir de nos enfants" },
+  { src: "/adds.png",  alt: "Étudiants YAS TOGO - EduBoost La Grande Tombola Solidaire" },
+  { src: "/adds2.png", alt: "EduBoost - Jouons aujourd'hui, construisons l'avenir de nos enfants" },
 ];
 
 const SLIDE_INTERVAL_MS = 10000;
