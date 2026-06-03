@@ -57,8 +57,8 @@ export function useOtpAuth(): OtpAuthState & OtpAuthActions {
         throw new Error(data?.error ?? "Erreur serveur. Veuillez réessayer.");
       }
       const data = await res.json();
-      // dev_otp uniquement si DEBUG=True côté backend ET env dev
-      if (data.dev_otp && process.env.NODE_ENV === "development") {
+      // dev_otp uniquement si DEBUG=True côté backend (jamais en prod)
+      if (data.dev_otp) {
         setDevOtp(data.dev_otp);
       }
       setStep("OTP");
@@ -92,7 +92,7 @@ export function useOtpAuth(): OtpAuthState & OtpAuthActions {
 
   // Reset complet - retour à l'étape PHONE
   function reset() {
-    setStep("PHONE"); setOtp(""); setOrders([]); setDevOtp(null); setError("");
+    setStep("PHONE"); setPhone(""); setOtp(""); setOrders([]); setDevOtp(null); setError("");
   }
 
   return { step, phone, otp, loading, error, devOtp, orders, setPhone, setOtp, requestOtp, verifyOtp, reset };
