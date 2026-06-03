@@ -10,7 +10,7 @@ stages:
 
 variables:
   NODE_ENV: test
-  IMAGE: registry.gitlab.com/it-plex/gte-frontend
+  IMAGE: $CI_REGISTRY_IMAGE
   DOCKER_TLS_CERTDIR: "/certs"
 
 # Cache npm entre jobs
