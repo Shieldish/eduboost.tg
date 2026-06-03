@@ -1,0 +1,203 @@
+@import "tailwindcss";
+
+/*
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ *  YAS TOGO — Brand Guidelines v1
+ *  Source : Brand Guidelines Document — Section 03 Colour
+ *
+ *  Primary Brand Colours (utilisation en proportions) :
+ *    Sunshine Yellow : #FFD100  → 50% (couleur dominante)
+ *    Midnight Blue   : #00377D  → 40% (couleur secondaire)
+ *    Sky Blue        : #5F99D2  → 10% (titres uniquement)
+ *
+ *  Nuances sombres dérivées (non officielles, pour profondeur) :
+ *    --navy-deep : #002A5E  (Midnight Blue + 15% noir)
+ *    --navy-mid  : #003D8F  (Midnight Blue + 5% noir)
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ */
+
+:root {
+  /* ── Couleurs officielles Brand Guidelines ── */
+  --yellow:    #FFD100;  /* Sunshine Yellow — 50% — couleur dominante */
+  --navy:      #00377D;  /* Midnight Blue   — 40% — couleur secondaire */
+  --sky:       #5F99D2;  /* Sky Blue        — 10% — titres seulement */
+
+  /* ── Nuances dérivées pour les fonds sombres ── */
+  --navy-deep: #002A5E;  /* navbar footer fonds profonds */
+  --navy-mid:  #003D8F;  /* cards, sections intermédiaires */
+}
+
+@theme inline {
+  /* Montserrat : titres, chiffres, boutons CTA (gras, percutant) */
+  /* Poppins    : corps de texte, labels, paragraphes (lisible, moderne) */
+  --font-sans:        "Poppins", sans-serif;
+  --font-display:     "Montserrat", sans-serif;
+  --color-yellow:     var(--yellow);
+  --color-navy:       var(--navy);
+  --color-sky:        var(--sky);
+  --color-navy-deep:  var(--navy-deep);
+  --color-navy-mid:   var(--navy-mid);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #fff;
+  color: #1a1a2e;
+  min-height: 100dvh;
+}
+
+/* Montserrat pour tous les titres et éléments d'affichage */
+h1, h2, h3, h4, .font-display { font-family: "Montserrat", sans-serif; }
+
+/* Touches minimum 44px */
+button, a[role="button"], .btn { min-height: 44px; touch-action: manipulation; }
+
+/* ── HERO ──────────────────────────────────────────────────────────────── */
+.hero-pattern {
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(255,209,0,0.2) 0%, transparent 55%),
+    radial-gradient(circle at 85% 20%, rgba(0,55,125,0.1) 0%, transparent 50%);
+}
+
+/* ── TICKET SHINE ─────────────────────────────────────────────────────── */
+.ticket-shine {
+  position: relative;
+  overflow: hidden;
+}
+.ticket-shine::after {
+  content: "";
+  position: absolute;
+  top: -50%; left: -60%;
+  width: 40%; height: 200%;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%);
+  transform: skewX(-15deg);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+.ticket-shine:hover::after { left: 130%; }
+
+/* ── ANIMATIONS ───────────────────────────────────────────────────────── */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+.float { animation: float-y 3.5s ease-in-out infinite; }
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,209,0,0.5); }
+  50%       { box-shadow: 0 0 0 14px rgba(255,209,0,0); }
+}
+.pulse-cta { animation: pulse-ring 2.2s infinite; }
+
+/* ── SPONSORS ─────────────────────────────────────────────────────────── */
+.sponsor-logo {
+  transition: filter 0.3s, transform 0.3s;
+  filter: grayscale(30%);
+}
+.sponsor-logo:hover { filter: grayscale(0%); transform: scale(1.04); }
+
+/* ── LAYOUT ───────────────────────────────────────────────────────────── */
+.section-wave {
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+
+.card-lift {
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,55,125,0.1);
+}
+
+html { scroll-behavior: smooth; }
+body, .page-wrapper { overflow-x: hidden; max-width: 100vw; }
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
+
+/* ── ACCESSIBILITÉ ────────────────────────────────────────────────────────
+   focus-visible : indicateur clavier visible pour tous les éléments
+   interactifs. Requis WCAG 2.1 AA — ratio minimum 3:1.
+   Le contour jaune sur fond sombre (navy) est visible.
+   Sur fond jaune (navbar), on inverse en bleu navy.
+   ──────────────────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Sur fond jaune (navbar, hero) → contour navy */
+nav :focus-visible,
+.bg-yellow :focus-visible,
+[class*="bg-\[#FFD100\]"] :focus-visible {
+  outline-color: var(--navy);
+}
+
+/* Supprimer le focus sur clic souris (garder seulement clavier) */
+:focus:not(:focus-visible) { outline: none; }
+
+/* Screen-reader only — texte invisible visuellement mais lu par les lecteurs */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+.sr-only.focusable:focus,
+.sr-only.focusable:focus-visible {
+  position: static;
+  width: auto; height: auto;
+  clip: auto;
+  margin: 0;
+  overflow: visible;
+  white-space: normal;
+}
+
+/* ── ANIMATIONS ────────────────────────────────────────────────────────────
+   spin : utilisé pour les spinners de chargement dans le JSX
+   ──────────────────────────────────────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.animate-spin { animation: spin 0.8s linear infinite; }
+
+/* Respecter prefers-reduced-motion (accessibilité) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .float, .pulse-cta { animation: none; }
+  .slideshow-container img { transition: none; }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO SLIDESHOW — Conteneur à dimensions fixes
+   Problème : adds.png (1438×1093) et adds2.png (1536×1024) ont des ratios
+   différents (1.31 vs 1.50), ce qui fait bouger le conteneur au changement.
+   Solution : aspect-ratio fixe + object-fit:contain → l'espace est toujours
+   le même, quelle que soit l'image affichée.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.slideshow-container {
+  /* Ratio 4/3 — compromise entre 1.31 et 1.50, stable pour les deux images */
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.slideshow-container img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* ne recadre pas, affiche tout dans l'espace */
+  object-position: center bottom;
+}
