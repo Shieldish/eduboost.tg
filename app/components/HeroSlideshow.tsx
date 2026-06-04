@@ -5,8 +5,8 @@ import { useState, useEffect } from "react";
 
 const SLIDES = [
   { src: "/adds.webp",       alt: "EduBoost - Étudiants YAS TOGO La Grande Tombola Solidaire" },
-  { src: "/adds2.webp",      alt: "EduBoost - Jouons aujourd'hui, construisons l'avenir" },
-  { src: "/human-adds.webp", alt: "EduBoost - Ensemble pour l'éducation au Togo" },
+ /*  { src: "/adds2.webp",      alt: "EduBoost - Jouons aujourd'hui, construisons l'avenir" }, */
+ { src: "/human-adds.webp", alt: "EduBoost - Ensemble pour l'éducation au Togo" }, 
 ];
 
 const INTERVAL_MS = 5000;
@@ -46,19 +46,6 @@ export default function HeroSlideshow() {
         />
       ))}
 
-      {/* Indicateurs de position */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10" aria-hidden="true">
-        {SLIDES.map((_, i) => (
-          <span
-            key={i}
-            className="block h-1.5 rounded-full transition-all duration-300"
-            style={{
-              width:           i === active ? "1.5rem" : "0.375rem",
-              backgroundColor: i === active ? "#FFD100" : "rgba(255,255,255,0.6)",
-            }}
-          />
-        ))}
-      </div>
     </div>
   );
 }

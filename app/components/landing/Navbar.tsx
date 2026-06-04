@@ -10,7 +10,7 @@ const NAV_LINKS = [
   ["#lots",       "Lots"],
   ["#participer", "Comment participer"],
   ["#sponsors",   "Sponsors"],
-  ["#",           "FAQ"],
+  ["/faq",        "FAQ"],
   ["#",           "Contact"],
 ];
 
