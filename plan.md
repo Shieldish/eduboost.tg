@@ -13,8 +13,9 @@ Interface web publique de la Grande Tombola pour l'Education — www.gte.tg
 | TypeScript | 5.x | Typage |
 | Tailwind CSS | 4.x | Styles utilitaires |
 | Bootstrap Icons | 1.11.3 | Icônes CDN |
-| Montserrat | — | Police titres/CTA (remplace Sora) |
-| Poppins | — | Police corps de texte (remplace DM Sans) |
+| Montserrat | — | Police titres/CTA |
+| Poppins | — | Police corps de texte |
+| Vitest | 4.x | Tests unitaires |
 
 ---
 
@@ -29,32 +30,43 @@ Interface web publique de la Grande Tombola pour l'Education — www.gte.tg
 | `/confirmation` | Récapitulatif + codes tickets |
 | `/mes-tickets` | Consultation tickets via OTP SMS |
 
+### Architecture modulaire
+
+- `hooks/useTicketPurchase.ts` — logique achat, polling, AbortController
+- `hooks/useOtpAuth.ts` — machine à états PHONE → OTP → TICKETS
+- `lib/confirmation-store.ts` — localStorage TTL 5min
+- `lib/requestId.ts` — génération UUID idempotent
+- `config/index.ts` — API_URL, regex Togo, constantes polling
+- `types/index.ts` — PaymentMethod, Order, Ticket, OtpStep
+
 ### Fonctionnalités
 
 - Navbar responsive avec burger menu mobile
 - Hero slideshow `adds.png`/`adds2.png` — alternance 10s, cross-fade 800ms, conteneur stable (aspect-ratio 4/3)
 - 2 méthodes paiement avec logos réels : MIXX, Crédit YAS (Flooz retiré)
 - Drapeau Togo PNG officiel avant `+228`
-- Validation numéro Togo client-side (regex préfixes 70-72, 90-93, 96-99)
+- Validation numéro Togo client-side (préfixes 70-73, 78-79, 90-93, 96-99)
 - Honeypot anti-bot + protection double soumission
 - AbortController sur le polling → annulé si navigation
 - Timeout absolu 90s sur le polling
-- Codes tickets en `sessionStorage` (TTL 5min, lecture unique) → URL propre
-- Page `/mes-tickets` : OTP SMS → tickets depuis la DB via `GET /my-tickets`
-- Composants réutilisables : `PageHeader`, `PageFooter`, `HeroSlideshow`, `confirmation-store`
+- Données confirmation en `localStorage` (TTL 5min)
+- Page `/mes-tickets` : OTP SMS → tickets depuis la DB
 - Headers sécurité HTTP : `X-Frame-Options`, `CSP`, `Referrer-Policy`, `Permissions-Policy`
-- `focus-visible` CSS sur tous les éléments interactifs (WCAG 2.1 AA)
-- `aria-*`, `role`, skip link, `prefers-reduced-motion`
-- Logos sponsors réels dans footer (Ecobank HD, Coris Bank, NSIA, Voltic, TVT, Techno, etc.)
-- Brand colors YAS TOGO Brand Guidelines : `#FFD100`, `#00377D`, `#5F99D2`
+- `focus-visible` CSS + `aria-*` + skip link + `prefers-reduced-motion`
+- Brand colors YAS TOGO : `#FFD100`, `#00377D`, `#5F99D2`
 - Polices Montserrat (titres) + Poppins (corps)
+
+### Tests (Vitest)
+
+- **46 tests** — composants (PaymentMethodSelector, PhoneInput, QuantityInput) et hooks (isValidTogoPhone, confirmation-store, useOtpAuth)
+- GitLab CI : lint + typecheck + tests/coverage → build Docker
+- `tsconfig.test.json` séparé avec `types: ["vitest/globals"]`
 
 ### Docker
 
 - Dockerfile multi-stage standalone Next.js
 - `output: standalone` dans `next.config.ts`
 - `NEXT_PUBLIC_API_URL=""` en Docker (Nginx gère le routage)
-- Headers sécurité via `next.config.ts`
 
 ---
 
@@ -103,6 +115,14 @@ npm install
 npm run dev
 # http://localhost:3000
 # .env.local : NEXT_PUBLIC_API_URL=http://localhost:8080
+```
+
+### Tests
+
+```bash
+npm run test            # Lancer les tests
+npm run test:coverage   # Avec rapport de couverture
+npx tsc --noEmit        # Vérification TypeScript
 ```
 
 ### Docker
