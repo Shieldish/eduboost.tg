@@ -20,7 +20,7 @@ export default function QuantityInput({ id, value, onChange }: Props) {
           onClick={() => onChange(Math.max(1, value - 1))}
           className="w-14 flex items-center justify-center text-[#00377D] font-black text-xl hover:bg-gray-100 active:bg-gray-200 transition self-stretch"
           aria-label="Réduire la quantité">
-          <i className="bi bi-dash" aria-hidden="true" />
+          <span aria-hidden="true" className="text-2xl font-black leading-none">−</span>
         </button>
         <input
           id={id} type="number" inputMode="numeric" min={1} max={100} value={value}
@@ -33,7 +33,7 @@ export default function QuantityInput({ id, value, onChange }: Props) {
           onClick={() => onChange(Math.min(100, value + 1))}
           className="w-14 flex items-center justify-center text-[#00377D] font-black text-xl hover:bg-gray-100 active:bg-gray-200 transition self-stretch"
           aria-label="Augmenter la quantité">
-          <i className="bi bi-plus" aria-hidden="true" />
+          <span aria-hidden="true" className="text-2xl font-black leading-none">+</span>
         </button>
       </div>
     </div>

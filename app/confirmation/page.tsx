@@ -14,7 +14,6 @@ function ConfirmationContent() {
 
   useEffect(() => {
     const confirmation = readConfirmation();
-    // Différer le setState hors du corps synchrone de l'effet (règle React)
     const t = setTimeout(() => {
       if (!confirmation) {
         router.replace("/");
@@ -22,7 +21,6 @@ function ConfirmationContent() {
       }
       setData(confirmation);
       setLoading(false);
-      // Nettoyer localStorage après affichage
       setTimeout(() => clearConfirmation(), 500);
     }, 0);
     return () => clearTimeout(t);
@@ -31,9 +29,12 @@ function ConfirmationContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#F8F9FB]">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-[#00377D] font-bold flex items-center gap-2">
-          <i className="bi bi-arrow-clockwise animate-spin" aria-hidden="true" />
+          <svg className="h-5 w-5 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 0 1 8-8v8H4Z"/>
+          </svg>
           <span>Chargement…</span>
         </div>
       </div>
@@ -46,98 +47,107 @@ function ConfirmationContent() {
   const masked = phone.length >= 4 ? phone.slice(0, 2) + " XX XX " + phone.slice(-2) : phone;
 
   return (
-    <div className="page-wrapper min-h-screen flex flex-col bg-[#F8F9FB]">
+    <div className="page-wrapper min-h-screen flex flex-col bg-gray-50">
       <PageHeader />
 
-      <main id="main-content" className="flex-1 flex items-start justify-center px-4 sm:px-6 py-10 sm:py-14">
-        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-lg p-6 sm:p-10 max-w-lg w-full text-center">
+      <main id="main-content" className="flex-1 mx-auto max-w-3xl px-4 py-8 w-full">
+        <section className="rounded-3xl bg-gray-100/70 p-6 sm:p-10">
 
-          {/* Icône succès */}
-          <div className="relative inline-flex items-center justify-center mb-6" role="img" aria-label="Achat réussi">
-            <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-green-500 flex items-center justify-center shadow-lg">
-              <i className="bi bi-check-lg text-white text-4xl sm:text-5xl" aria-hidden="true" />
+          {/* Succès + confettis */}
+          <div className="relative flex justify-center">
+            <span className="absolute left-[18%] top-2 h-2 w-3 rotate-45 rounded-sm bg-[#FFD100]" aria-hidden="true"></span>
+            <span className="absolute left-[30%] top-8 h-2 w-3 -rotate-12 rounded-sm bg-[#5F99D2]" aria-hidden="true"></span>
+            <span className="absolute left-[12%] top-16 h-2.5 w-2.5 rounded-full bg-[#5F99D2]" aria-hidden="true"></span>
+            <span className="absolute right-[30%] top-3 h-2 w-3 rotate-12 rounded-sm bg-[#1E9E4A]" aria-hidden="true"></span>
+            <span className="absolute right-[16%] top-9 h-2 w-3 rotate-45 rounded-sm bg-[#FFD100]" aria-hidden="true"></span>
+            <span className="absolute right-[12%] top-20 h-2.5 w-2.5 rounded-full bg-[#5F99D2]" aria-hidden="true"></span>
+            <div className="flex h-24 w-24 items-center justify-center rounded-full bg-[#1E9E4A] shadow-lg" role="img" aria-label="Achat réussi">
+              <svg className="h-12 w-12 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="m5 13 4 4L19 7"/>
+              </svg>
             </div>
-            <span className="absolute -top-2 -left-3 text-yellow-400 text-lg" style={{ transform: "rotate(-20deg)" }} aria-hidden="true">✦</span>
-            <span className="absolute -top-3 right-0 text-blue-400 text-sm" style={{ transform: "rotate(15deg)" }} aria-hidden="true">✦</span>
-            <span className="absolute bottom-0 -left-5 text-[#FFD100] text-base" style={{ transform: "rotate(-10deg)" }} aria-hidden="true">✦</span>
-            <span className="absolute bottom-2 -right-3 text-red-400 text-sm" style={{ transform: "rotate(20deg)" }} aria-hidden="true">✦</span>
           </div>
 
-          <h1 className="text-[#00377D] font-black text-2xl sm:text-3xl mb-2" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-            Félicitations !
-          </h1>
-          <p className="text-green-600 font-semibold text-base sm:text-lg mb-7">
-            Votre achat a été effectué avec succès.
-          </p>
+          <h1 className="mt-6 text-center text-5xl font-black text-[#00377D]">Félicitations !</h1>
+          <p className="mt-2 text-center text-xl font-bold text-[#1E9E4A]">Votre achat a été effectué avec succès.</p>
 
-          {/* Détails commande */}
-          <div className="border border-gray-100 rounded-2xl divide-y divide-gray-100 text-left mb-6">
+          {/* Détails */}
+          <div className="mt-8 rounded-2xl bg-white p-5 shadow-card sm:p-7">
             {[
-              { icon: "bi-ticket-perforated-fill", label: "Référence de Paiement", value: ref },
-              { icon: "bi-collection-fill",        label: "Nombre de tickets",     value: `${qty} ticket${qty > 1 ? "s" : ""}` },
-              { icon: "bi-cash-coin",              label: "Montant payé",          value: `${total.toLocaleString("fr-FR")} FCFA` },
+              {
+                icon: <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-4Z"/>,
+                label: "Référence de Paiement",
+                value: ref,
+              },
+              {
+                icon: <path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm1 4v2h8V6H8Zm0 4v2h2v-2H8Zm4 0v2h2v-2h-2Zm4 0v2h2v-2h-2Zm-8 4v2h2v-2H8Zm4 0v2h2v-2h-2Z"/>,
+                label: "Nombre de tickets",
+                value: `${qty} ticket${qty > 1 ? "s" : ""}`,
+              },
+              {
+                icon: <><path d="M0 0h24v24H0z" fill="none"/><text x="2" y="16" fontSize="9" fontWeight="bold" fill="currentColor">FCFA</text></>,
+                label: "Montant payé",
+                value: `${total.toLocaleString("fr-FR")} FCFA`,
+              },
             ].map(({ icon, label, value }) => (
-              <div key={label} className="flex items-center gap-4 px-4 sm:px-5 py-4">
-                <div className="w-10 h-10 rounded-full bg-[#FFD100] flex items-center justify-center flex-shrink-0" aria-hidden="true">
-                  <i className={`bi ${icon} text-[#00377D] text-base`} aria-hidden="true" />
+              <div key={label} className="flex items-center justify-between border-b border-gray-100 py-3 last:border-0">
+                <div className="flex items-center gap-3">
+                  <span className="icon-badge h-12 w-12">
+                    <svg className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{icon}</svg>
+                  </span>
+                  <span className="text-base font-semibold text-[#00377D]">{label}</span>
                 </div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-gray-400 text-xs">{label}</div>
-                </div>
-                <div className="text-[#00377D] font-black text-sm sm:text-base truncate max-w-[140px]">{value}</div>
+                <span className="text-lg font-black text-[#1E9E4A]">{value}</span>
               </div>
             ))}
-          </div>
 
-          {/* Codes tickets */}
-          {codes.length > 0 && (
-            <section className="mb-6" aria-labelledby="codes-heading">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="h-px flex-1 bg-gray-100" aria-hidden="true" />
-                <h2 id="codes-heading" className="text-[#00377D] font-bold text-sm uppercase tracking-wide flex items-center gap-1">
-                  <i className="bi bi-ticket-perforated-fill text-[#FFD100]" aria-hidden="true" />
+            {/* Codes tickets */}
+            {codes.length > 0 && (
+              <section className="mt-4" aria-labelledby="codes-heading">
+                <h2 id="codes-heading" className="text-sm font-bold text-[#00377D] uppercase tracking-wide mb-3">
                   Vos codes tickets
                 </h2>
-                <div className="h-px flex-1 bg-gray-100" aria-hidden="true" />
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" role="list" aria-label="Codes tickets">
-                {codes.map((code, i) => (
-                  <div key={code} role="listitem"
-                    className="bg-[#00377D] text-[#FFD100] font-black text-center py-2.5 px-3 rounded-xl text-sm tracking-widest"
-                    style={{ fontFamily: "'Montserrat', sans-serif" }}>
-                    <div className="text-white/40 text-xs font-normal mb-0.5">#{i + 1}</div>
-                    {code}
-                  </div>
-                ))}
-              </div>
-              <p className="text-gray-400 text-xs mt-3 flex items-center justify-center gap-1">
-                <i className="bi bi-shield-check text-green-500" aria-hidden="true" />
-                Conservez ces codes — ils sont votre participation officielle
-              </p>
-            </section>
-          )}
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" role="list" aria-label="Codes tickets">
+                  {codes.map((code, i) => (
+                    <div key={code} role="listitem"
+                      className="bg-[#00377D] text-[#FFD100] font-black text-center py-2.5 px-3 rounded-xl text-sm tracking-widest">
+                      <div className="text-white/40 text-xs font-normal mb-0.5">#{i + 1}</div>
+                      {code}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
-          {/* Boutons */}
-          <div className="flex flex-col sm:flex-row gap-3 mb-6">
-            <button onClick={() => window.print()}
-              className="flex-1 border-2 border-[#00377D] text-[#00377D] font-bold py-3.5 rounded-2xl hover:bg-gray-50 transition flex items-center justify-center gap-2 min-h-[52px]">
-              <i className="bi bi-download" aria-hidden="true" /> Télécharger le reçu
-            </button>
-            <Link href="/"
-              className="flex-1 bg-[#00377D] text-white font-bold py-3.5 rounded-2xl hover:bg-[#002A5E] transition flex items-center justify-center gap-2 min-h-[52px]"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}>
-              <i className="bi bi-house-fill" aria-hidden="true" /> Retour à l&apos;accueil
-            </Link>
+            {/* Actions */}
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <button onClick={() => window.print()} className="btn-outline py-4 text-sm">
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>
+                </svg>
+                Télécharger le reçu
+              </button>
+              <Link href="/" className="btn-navy rounded-xl py-4 text-sm">
+                <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 3 2 12h3v8h5v-5h4v5h5v-8h3L12 3Z"/>
+                </svg>
+                Retour à l&apos;accueil
+              </Link>
+            </div>
           </div>
 
-          {/* Info SMS */}
-          <div className="bg-blue-50 border border-blue-100 rounded-2xl px-4 py-3 flex items-start gap-3 text-left">
-            <i className="bi bi-info-circle-fill text-blue-500 text-lg flex-shrink-0 mt-0.5" aria-hidden="true" />
-            <p className="text-blue-700 text-sm leading-relaxed">
-              Vos tickets ont également été envoyés par SMS au <strong>+228 {masked}</strong>.
+          {/* Note info SMS */}
+          <div className="mt-6 flex items-start gap-3 rounded-xl bg-[#5F99D2]/15 p-4">
+            <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#5F99D2] text-white" aria-hidden="true">
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11 7h2v2h-2V7Zm0 4h2v6h-2v-6Zm1-9a10 10 0 1 0 0 20 10 10 0 0 0 0-20Z"/>
+              </svg>
+            </span>
+            <p className="text-sm font-medium text-[#00377D]">
+              Vos tickets ont été envoyés par SMS au <strong>+228 {masked}</strong>.
             </p>
           </div>
-        </div>
+        </section>
       </main>
 
       <PageFooter />

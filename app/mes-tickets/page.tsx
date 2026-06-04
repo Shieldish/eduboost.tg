@@ -10,7 +10,7 @@ import { useOtpAuth } from "@/hooks/useOtpAuth";
 export default function MesTicketsPage() {
   const auth = useOtpAuth();
   return (
-    <div className="page-wrapper min-h-screen flex flex-col bg-[#F8F9FB]">
+    <div className="page-wrapper min-h-screen flex flex-col bg-gray-50">
       <PageHeader secure={false} />
       <main id="main-content" className="flex-1 px-4 sm:px-6 py-10 sm:py-14 max-w-xl mx-auto w-full">
         {auth.step === "PHONE" && (

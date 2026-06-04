@@ -7,10 +7,10 @@ import type { PaymentMethod } from "@/types";
 
 // Logos définis comme composants (pas JSX statique au module scope)
 function MixxLogo() {
-  return <Image src="/mixx-logo.jpg" alt="MIXX by YAS" width={64} height={32} className="object-contain rounded-lg h-8 w-auto" />;
+  return <Image src="/mixx-logo.webp" alt="MIXX by YAS" width={64} height={32} className="object-contain rounded-lg h-8 w-auto" />;
 }
 function AirtimeLogo() {
-  return <Image src="/airtime-logo.png" alt="Crédit YAS - Airtime" width={52} height={32} className="object-contain h-8 w-auto" />;
+  return <Image src="/airtime-logo.webp" alt="Crédit YAS - Airtime" width={52} height={32} className="object-contain h-8 w-auto" />;
 }
 
 const METHODS = [
@@ -48,7 +48,11 @@ export default function PaymentMethodSelector({ value, onChange }: Props) {
               }`}
               aria-hidden="true"
             >
-              {value === id && <i className="bi bi-check text-white text-xs font-bold" aria-hidden="true" />}
+              {value === id && (
+                <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="m5 13 4 4L19 7"/>
+                </svg>
+              )}
             </div>
             <div className="flex flex-col items-start gap-0.5 min-w-0 flex-1">
               <Logo />
