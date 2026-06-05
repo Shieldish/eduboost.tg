@@ -1,5 +1,5 @@
 /**
- * tests/components.test.tsx — Tests des composants UI
+ * tests/components.test.tsx - Tests des composants UI
  *
  * Couvre :
  *   - PaymentMethodSelector : sélection MIXX / CREDIT_YAS

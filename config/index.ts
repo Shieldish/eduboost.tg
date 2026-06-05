@@ -10,7 +10,7 @@ export const POLL_INTERVAL_MS  = 1_500;  // 1.5s entre chaque tentative
 export const POLL_TIMEOUT_MS   = 90_000; // timeout absolu 90s
 export const POLL_MAX_ATTEMPTS = 60;
 
-// Validation numéro Togo — tous les préfixes valides (Togocom + Moov)
+// Validation numéro Togo - tous les préfixes valides (Togocom + Moov)
 // Format : 8 chiffres, commence par l'un de ces préfixes
 export const TOGO_PHONE_REGEX = /^(70|71|72|73|78|79|90|91|92|93|96|97|98|99)/;
 

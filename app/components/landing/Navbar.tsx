@@ -36,9 +36,9 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop CTA buttons — fidèles à la maquette */}
+        {/* Desktop CTA buttons - fidèles à la maquette */}
         <div className="hidden lg:flex items-center gap-3">
-          {/* MES TICKETS — outline rond */}
+          {/* MES TICKETS - outline rond */}
           <Link
             href="/mes-tickets"
             className="flex items-center gap-2 rounded-full border-2 border-[#00377D] px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-[#00377D] transition hover:bg-[#00377D] hover:text-white"
@@ -49,7 +49,7 @@ export default function Navbar() {
             Mes Tickets
           </Link>
 
-          {/* ACHETER UN TICKET — navy plein */}
+          {/* ACHETER UN TICKET - navy plein */}
           <Link
             href="/ticket"
             className="flex items-center gap-2 rounded-full bg-[#0B1F5B] px-5 py-2.5 text-xs font-extrabold uppercase tracking-wide text-white transition hover:brightness-110"
@@ -61,7 +61,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Bouton Mes Tickets visible sur mobile — entre logo et hamburger */}
+        {/* Bouton Mes Tickets visible sur mobile - entre logo et hamburger */}
         <Link
           href="/mes-tickets"
           className="lg:hidden flex items-center gap-1.5 rounded-full border-2 border-[#00377D] px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-wide text-[#00377D] transition hover:bg-[#00377D] hover:text-white"
@@ -72,7 +72,7 @@ export default function Navbar() {
           Mes tickets
         </Link>
 
-        {/* Hamburger — visible uniquement sous lg */}
+        {/* Hamburger - visible uniquement sous lg */}
         <button
           className="lg:hidden flex h-11 w-11 items-center justify-center rounded-xl text-[#00377D] hover:bg-[#00377D]/10 transition"
           onClick={() => setMenuOpen(v => !v)}
@@ -87,7 +87,7 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile drawer — animation CSS (pas de conditional render pour éviter le flash) */}
+      {/* Mobile drawer - animation CSS (pas de conditional render pour éviter le flash) */}
       <div
         className={`lg:hidden overflow-hidden bg-[#FFD100] border-t border-[#00377D]/10 transition-all duration-300 ease-in-out ${
           menuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"

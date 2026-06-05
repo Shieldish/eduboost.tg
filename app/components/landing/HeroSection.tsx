@@ -6,7 +6,7 @@ function EduBoostWordmark() {
   return (
     <div className="relative inline-block">
       {/* Toque SVG flottante au-dessus du E */}
-      {/* Graduation cap avec queue — incliné -30° */}
+      {/* Graduation cap avec queue - incliné -30° */}
       <svg
         aria-hidden="true"
         viewBox="0 0 64 64"

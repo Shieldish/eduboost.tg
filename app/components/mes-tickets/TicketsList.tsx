@@ -19,7 +19,7 @@ export default function TicketsList({ phone, orders, onLogout }: Props) {
         <div>
           <h1 className="text-[#00377D] font-black text-xl sm:text-2xl">Mes tickets</h1>
           <p className="text-gray-500 text-xs mt-0.5">
-            +228 {masked} — {total} ticket{total > 1 ? "s" : ""} au total
+            +228 {masked} - {total} ticket{total > 1 ? "s" : ""} au total
           </p>
         </div>
         <button

@@ -7,7 +7,7 @@ import {
 import { SPONSORS_OFFICIELS, SPONSORS_MEDIAS } from "../../../constants/sponsors";
 import SponsorMarquee from "./SponsorMarquee";
 
-/* ── Icônes sociales (SVG inline — pas dans lucide-react v1) ── */
+/* ── Icônes sociales (SVG inline - pas dans lucide-react v1) ── */
 function FacebookIcon() {
   return (
     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -66,7 +66,7 @@ export default function LandingFooter() {
   return (
     <footer id="sponsors">
 
-      {/* ── SPONSORS CARROUSEL — fond blanc ────────────────────────── */}
+      {/* ── SPONSORS CARROUSEL - fond blanc ────────────────────────── */}
       <div className="bg-white py-8 border-b border-gray-100">
         <h2 className="text-center text-sm font-extrabold uppercase tracking-widest text-[#00377D] mb-6">
           Nos sponsors et partenaires
@@ -77,12 +77,12 @@ export default function LandingFooter() {
         <SponsorMarquee items={SPONSORS_MEDIAS} reverse duration={25} />
       </div>
 
-      {/* ── 4 COLONNES — fond navy ──────────────────────────────────── */}
+      {/* ── 4 COLONNES - fond navy ──────────────────────────────────── */}
       <div className="bg-[#0B1F5B]">
       <div className="py-10">
         <div className="mx-auto max-w-6xl px-4 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 
-          {/* Colonne 1 — Marque */}
+          {/* Colonne 1 - Marque */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <div className="bg-[#FFD100] rounded-xl p-1.5 flex items-center justify-center">
@@ -106,7 +106,7 @@ export default function LandingFooter() {
             </div>
           </div>
 
-          {/* Colonne 2 — Navigation */}
+          {/* Colonne 2 - Navigation */}
           <div className="flex flex-col gap-2">
             <h4 className="text-[#FFD100] font-extrabold text-xs uppercase tracking-widest mb-2">
               Navigation
@@ -120,7 +120,7 @@ export default function LandingFooter() {
             ))}
           </div>
 
-          {/* Colonne 3 — Participer */}
+          {/* Colonne 3 - Participer */}
           <div className="flex flex-col gap-4">
             <h4 className="text-[#FFD100] font-extrabold text-xs uppercase tracking-widest">
               Participer
@@ -150,7 +150,7 @@ export default function LandingFooter() {
             </Link>
           </div>
 
-          {/* Colonne 4 — Contact */}
+          {/* Colonne 4 - Contact */}
           <div className="flex flex-col gap-4">
             <h4 className="text-[#FFD100] font-extrabold text-xs uppercase tracking-widest">
               Contact
@@ -179,7 +179,7 @@ export default function LandingFooter() {
       {/* ── COPYRIGHT BAR ──────────────────────────────────────────── */}
       <div className="border-t border-white/10 py-4 px-4">
         <div className="mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-2 text-white/40 text-xs">
-          <span>© 2026 YAS TOGO — EduBoost. Tous droits réservés.</span>
+          <span>© 2026 YAS TOGO - EduBoost. Tous droits réservés.</span>
           <div className="flex gap-4">
             <Link href="#" className="hover:text-[#FFD100] transition-colors">Mentions légales</Link>
             <Link href="#" className="hover:text-[#FFD100] transition-colors">Règlement</Link>

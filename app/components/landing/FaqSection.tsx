@@ -10,7 +10,7 @@ const FAQS = [
   },
   {
     q: "Comment acheter un ticket ?",
-    a: "Vous pouvez acheter un ticket EduBoost de 3 façons : (1) Sur le Web — rendez-vous sur www.eduboost.tg/ticket. (2) Par SMS — envoyez le mot BOURSE au 8998 et suivez les instructions. (3) Par USSD — composez *909*5# depuis votre téléphone et sélectionnez EduBoost dans le menu.",
+    a: "Vous pouvez acheter un ticket EduBoost de 3 façons : (1) Sur le Web - rendez-vous sur www.eduboost.tg/ticket. (2) Par SMS - envoyez le mot BOURSE au 8998 et suivez les instructions. (3) Par USSD - composez *909*5# depuis votre téléphone et sélectionnez EduBoost dans le menu.",
   },
   {
     q: "Combien coûte un ticket ?",
@@ -26,7 +26,7 @@ const FAQS = [
   },
   {
     q: "Comment recevoir mon ticket après l'achat ?",
-    a: "Vos codes tickets sont envoyés automatiquement par SMS sur le numéro de téléphone utilisé lors de l'achat, dans les minutes qui suivent la confirmation du paiement. Conservez précieusement vos codes — ils sont votre participation officielle.",
+    a: "Vos codes tickets sont envoyés automatiquement par SMS sur le numéro de téléphone utilisé lors de l'achat, dans les minutes qui suivent la confirmation du paiement. Conservez précieusement vos codes - ils sont votre participation officielle.",
   },
   {
     q: "Comment consulter mes tickets ?",
@@ -115,7 +115,7 @@ export default function FaqSection() {
             Contactez-nous au <strong className="text-[#FFD100]">8200</strong> ou sur nos réseaux sociaux.
           </p>
           <Link href="/ticket" className="btn-yellow text-sm inline-flex">
-            Acheter un ticket — 250 FCFA
+            Acheter un ticket - 250 FCFA
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
               <path d="M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-4Z"/>
             </svg>

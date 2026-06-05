@@ -61,7 +61,7 @@ body {
 }
 .btn-outline:hover { background-color: var(--eduBlue); color: #fff; }
 
-/* Wordmark EduBoost — italique gras */
+/* Wordmark EduBoost - italique gras */
 .wordmark { font-weight: 800; font-style: italic; line-height: 1; }
 
 /* Pastille icône jaune ronde */
@@ -83,7 +83,7 @@ body {
 
 .shadow-card { box-shadow: 0 10px 30px -12px rgba(0,55,125,.25); }
 
-/* ── Sponsor marquee keyframes — utilisé via style inline dans SponsorMarquee.tsx ── */
+/* ── Sponsor marquee keyframes - utilisé via style inline dans SponsorMarquee.tsx ── */
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-25%); }

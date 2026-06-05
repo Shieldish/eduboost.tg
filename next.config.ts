@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "DENY" },
           // Empêche le sniffing MIME
           { key: "X-Content-Type-Options", value: "nosniff" },
-          // Referrer limité — protège les URLs avec paramètres sensibles
+          // Referrer limité - protège les URLs avec paramètres sensibles
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           // Désactive les APIs inutiles
           {
@@ -48,7 +48,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net",
               "font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net",
               "img-src 'self' data: blob:",
-              // API backend — localhost en dev, domaine prod en prod
+              // API backend - localhost en dev, domaine prod en prod
               "connect-src 'self' http://localhost:8080 https://api.eduboost.tg https://www.eduboost.tg",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
               "frame-ancestors 'none'",

@@ -1,5 +1,5 @@
 /**
- * tests/hooks.test.ts — Tests des hooks React
+ * tests/hooks.test.ts - Tests des hooks React
  *
  * Couvre :
  *   - isValidTogoPhone   : validation numéros
@@ -12,7 +12,7 @@ import { renderHook, act } from '@testing-library/react'
 
 
 // ─────────────────────────────────────────────────────────────────────────────
-// config/index.ts — isValidTogoPhone
+// config/index.ts - isValidTogoPhone
 // ─────────────────────────────────────────────────────────────────────────────
 
 describe('isValidTogoPhone', () => {

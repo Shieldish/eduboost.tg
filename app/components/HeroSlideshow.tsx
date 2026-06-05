@@ -43,7 +43,7 @@ export default function HeroSlideshow() {
             opacity:    i === active ? 1 : 0,
             transition: `opacity ${FADE_MS}ms ease-in-out`,
             willChange: "opacity",
-            transform:  "translateZ(0)",  // force GPU layer — fix mobile Safari/Android
+            transform:  "translateZ(0)",  // force GPU layer - fix mobile Safari/Android
           }}
         />
       ))}

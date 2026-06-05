@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "EduBoost - La Grande Tombola Solidaire | YAS TOGO",
   description:
     "Participez à EduBoost, la Grande Tombola Solidaire organisée par YAS TOGO. " +
-    "Ticket 250 FCFA — Prix total 10 000 000 FCFA. Tirage en direct le 01/09/2026.",
+    "Ticket 250 FCFA - Prix total 10 000 000 FCFA. Tirage en direct le 01/09/2026.",
 };
 
 export default function RootLayout({

@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function SponsorMarquee({ items, reverse = false, duration = 30 }: Props) {
-  // 4 copies — `-50%` de 4x reste seamless même sur très grand écran / dezoom
+  // 4 copies - `-50%` de 4x reste seamless même sur très grand écran / dezoom
   const quad = [...items, ...items, ...items, ...items];
 
   return (

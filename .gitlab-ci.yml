@@ -1,4 +1,4 @@
-# .gitlab-ci.yml — Pipeline CI/CD GTE Frontend
+# .gitlab-ci.yml - Pipeline CI/CD GTE Frontend
 #
 # Stages :
 #   test  → lint + tests unitaires composants/hooks

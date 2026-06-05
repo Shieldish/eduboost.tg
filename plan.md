@@ -1,8 +1,8 @@
-# Plan — GTE Frontend
+# Plan - GTE Frontend
 
 ## Ce que c'est
 
-Interface web publique de la Grande Tombola pour l'Education — www.gte.tg
+Interface web publique de la Grande Tombola pour l'Education - www.gte.tg
 
 ## Stack
 
@@ -13,8 +13,8 @@ Interface web publique de la Grande Tombola pour l'Education — www.gte.tg
 | TypeScript | 5.x | Typage |
 | Tailwind CSS | 4.x | Styles utilitaires |
 | Bootstrap Icons | 1.11.3 | Icônes CDN |
-| Montserrat | — | Police titres/CTA |
-| Poppins | — | Police corps de texte |
+| Montserrat | - | Police titres/CTA |
+| Poppins | - | Police corps de texte |
 | Vitest | 4.x | Tests unitaires |
 
 ---
@@ -32,17 +32,17 @@ Interface web publique de la Grande Tombola pour l'Education — www.gte.tg
 
 ### Architecture modulaire
 
-- `hooks/useTicketPurchase.ts` — logique achat, polling, AbortController
-- `hooks/useOtpAuth.ts` — machine à états PHONE → OTP → TICKETS
-- `lib/confirmation-store.ts` — localStorage TTL 5min
-- `lib/requestId.ts` — génération UUID idempotent
-- `config/index.ts` — API_URL, regex Togo, constantes polling
-- `types/index.ts` — PaymentMethod, Order, Ticket, OtpStep
+- `hooks/useTicketPurchase.ts` - logique achat, polling, AbortController
+- `hooks/useOtpAuth.ts` - machine à états PHONE → OTP → TICKETS
+- `lib/confirmation-store.ts` - localStorage TTL 5min
+- `lib/requestId.ts` - génération UUID idempotent
+- `config/index.ts` - API_URL, regex Togo, constantes polling
+- `types/index.ts` - PaymentMethod, Order, Ticket, OtpStep
 
 ### Fonctionnalités
 
 - Navbar responsive avec burger menu mobile
-- Hero slideshow `adds.png`/`adds2.png` — alternance 10s, cross-fade 800ms, conteneur stable (aspect-ratio 4/3)
+- Hero slideshow `adds.png`/`adds2.png` - alternance 10s, cross-fade 800ms, conteneur stable (aspect-ratio 4/3)
 - 2 méthodes paiement avec logos réels : MIXX, Crédit YAS (Flooz retiré)
 - Drapeau Togo PNG officiel avant `+228`
 - Validation numéro Togo client-side (préfixes 70-73, 78-79, 90-93, 96-99)
@@ -58,7 +58,7 @@ Interface web publique de la Grande Tombola pour l'Education — www.gte.tg
 
 ### Tests (Vitest)
 
-- **46 tests** — composants (PaymentMethodSelector, PhoneInput, QuantityInput) et hooks (isValidTogoPhone, confirmation-store, useOtpAuth)
+- **46 tests** - composants (PaymentMethodSelector, PhoneInput, QuantityInput) et hooks (isValidTogoPhone, confirmation-store, useOtpAuth)
 - GitLab CI : lint + typecheck + tests/coverage → build Docker
 - `tsconfig.test.json` séparé avec `types: ["vitest/globals"]`
 
@@ -72,30 +72,30 @@ Interface web publique de la Grande Tombola pour l'Education — www.gte.tg
 
 ## Ce qui RESTE à faire ⏳
 
-### Priorité haute — AVANT PROD
+### Priorité haute - AVANT PROD
 
-- [ ] **Page 404 personnalisée** — `app/not-found.tsx` aux couleurs GTE
-- [ ] **Open Graph** — `og:image` 1200×630px pour partage Facebook/WhatsApp
-- [ ] **Images WebP** — convertir `adds.png`/`adds2.png` (2MB chacune → ~200KB)
-- [ ] **Test mobile réel** — iOS Safari + Android Chrome
+- [ ] **Page 404 personnalisée** - `app/not-found.tsx` aux couleurs GTE
+- [ ] **Open Graph** - `og:image` 1200×630px pour partage Facebook/WhatsApp
+- [ ] **Images WebP** - convertir `adds.png`/`adds2.png` (2MB chacune → ~200KB)
+- [ ] **Test mobile réel** - iOS Safari + Android Chrome
 
 ### Priorité moyenne
 
-- [ ] **Page FAQ** — questions fréquentes sur la tombola
-- [ ] **Page Règlement** — texte officiel
-- [ ] **Countdown tirage** — compteur J-X jusqu'au 01/09/2026
-- [ ] **Page erreur paiement** — si FAILED ou timeout
+- [ ] **Page FAQ** - questions fréquentes sur la tombola
+- [ ] **Page Règlement** - texte officiel
+- [ ] **Countdown tirage** - compteur J-X jusqu'au 01/09/2026
+- [ ] **Page erreur paiement** - si FAILED ou timeout
 - [ ] **Token JWT** après OTP → cookie httpOnly pour sécuriser `/mes-tickets`
 
 ### Priorité basse
 
-- [ ] **PWA** — `manifest.json` + Service Worker
-- [ ] **Animations au scroll** — Intersection Observer
-- [ ] **i18n** — version anglaise pour la diaspora
+- [ ] **PWA** - `manifest.json` + Service Worker
+- [ ] **Animations au scroll** - Intersection Observer
+- [ ] **i18n** - version anglaise pour la diaspora
 
 ---
 
-## Mode Production — checklist
+## Mode Production - checklist
 
 - [ ] `NEXT_PUBLIC_API_URL` vide confirmé
 - [ ] `output: standalone` confirmé

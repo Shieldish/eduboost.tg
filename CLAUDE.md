@@ -2,7 +2,7 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-> **Important**: This is Next.js 16 with React 19 — APIs and conventions differ from older versions. Read `node_modules/next/dist/docs/` if unsure about a specific API.
+> **Important**: This is Next.js 16 with React 19 - APIs and conventions differ from older versions. Read `node_modules/next/dist/docs/` if unsure about a specific API.
 
 ---
 
@@ -41,22 +41,22 @@ npx vitest run tests/components.test.tsx
 | `/confirmation`| `app/confirmation/page.tsx`       | Reads confirmation from localStorage (5-min TTL)  |
 | `/mes-tickets` | `app/mes-tickets/page.tsx`        | OTP SMS auth flow → display tickets               |
 
-All pages except landing are Client Components. No SSR — auth is OTP-based, no server sessions.
+All pages except landing are Client Components. No SSR - auth is OTP-based, no server sessions.
 
 ### State & Data Flow
 
 No global state manager. Each page owns its state via custom hooks:
 
-- **`hooks/useTicketPurchase.ts`** — POST `/buy`, then polls GET `/status?request_id=...` with AbortController (90s timeout, 1.5s interval). On success, saves to `lib/confirmation-store.ts` and redirects to `/confirmation`.
-- **`hooks/useOtpAuth.ts`** — State machine: `PHONE → OTP → TICKETS`. Calls POST `/auth/otp/request` then POST `/auth/otp/verify`.
+- **`hooks/useTicketPurchase.ts`** - POST `/buy`, then polls GET `/status?request_id=...` with AbortController (90s timeout, 1.5s interval). On success, saves to `lib/confirmation-store.ts` and redirects to `/confirmation`.
+- **`hooks/useOtpAuth.ts`** - State machine: `PHONE → OTP → TICKETS`. Calls POST `/auth/otp/request` then POST `/auth/otp/verify`.
 
 ### Key Modules
 
-- **`config/index.ts`** — `API_URL`, polling constants, `TOGO_PHONE_REGEX`, `isValidTogoPhone()`
-- **`types/index.ts`** — All TypeScript interfaces (`PaymentMethod`, `OtpStep`, `Order`, `Ticket`, API response types)
-- **`constants/brand.ts`** — Colors, tombola config (price, prize, draw date, shortcodes), social links
-- **`lib/confirmation-store.ts`** — localStorage with 5-min TTL for confirmation data
-- **`lib/requestId.ts`** — UUID v4 via `crypto.randomUUID()` for idempotent requests
+- **`config/index.ts`** - `API_URL`, polling constants, `TOGO_PHONE_REGEX`, `isValidTogoPhone()`
+- **`types/index.ts`** - All TypeScript interfaces (`PaymentMethod`, `OtpStep`, `Order`, `Ticket`, API response types)
+- **`constants/brand.ts`** - Colors, tombola config (price, prize, draw date, shortcodes), social links
+- **`lib/confirmation-store.ts`** - localStorage with 5-min TTL for confirmation data
+- **`lib/requestId.ts`** - UUID v4 via `crypto.randomUUID()` for idempotent requests
 
 ### Components Layout
 
@@ -78,7 +78,7 @@ POST /auth/otp/request       # { phone }
 POST /auth/otp/verify        # { phone, otp } → returns orders with ticket codes
 ```
 
-In production, `NEXT_PUBLIC_API_URL` is empty — Nginx routes `/api/*` to the backend.
+In production, `NEXT_PUBLIC_API_URL` is empty - Nginx routes `/api/*` to the backend.
 
 ### Testing
 

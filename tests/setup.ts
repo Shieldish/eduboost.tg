@@ -1,4 +1,4 @@
-// tests/setup.ts — Configuration globale des tests Vitest
+// tests/setup.ts - Configuration globale des tests Vitest
 import '@testing-library/jest-dom'
 import React from 'react'
 

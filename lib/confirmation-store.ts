@@ -1,5 +1,5 @@
 /**
- * confirmation-store.ts — Stockage sécurisé des données de confirmation
+ * confirmation-store.ts - Stockage sécurisé des données de confirmation
  *
  * Utilise localStorage (survit à la navigation entre pages) avec TTL 5 min.
  * Lecture unique : les données sont supprimées après lecture.

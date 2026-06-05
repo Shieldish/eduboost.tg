@@ -72,7 +72,7 @@ export default function CtaSection() {
     <section className="my-6 mx-auto max-w-6xl px-4 w-full">
       <div className="grid gap-6 rounded-3xl bg-[#0B1F5B] p-6 text-white md:grid-cols-2 md:p-8">
 
-        {/* Gauche — CTA achat */}
+        {/* Gauche - CTA achat */}
         <div className="md:border-r md:border-white/20 md:pr-8 flex flex-col justify-center">
           <h3 className="text-2xl font-black uppercase leading-tight text-[#FFD100]">
             1 ticket = 1 chance<br/>d&apos;offrir un meilleur avenir !
@@ -88,7 +88,7 @@ export default function CtaSection() {
           </Link>
         </div>
 
-        {/* Droite — Tirage + countdown */}
+        {/* Droite - Tirage + countdown */}
         <div className="flex flex-col items-start gap-3 md:items-center md:text-center">
           <p className="text-xs font-bold uppercase tracking-widest text-white/60">
             Tirage au sort le

@@ -1,7 +1,7 @@
 export default function PrixSection() {
   return (
     <>
-      {/* PRIZE BAND — fond crème */}
+      {/* PRIZE BAND - fond crème */}
       <section id="lots" className="mx-auto max-w-6xl px-4 w-full">
         <div className="grid items-center gap-6 rounded-3xl border-4 border-[#FFD100] bg-[#FFF7DC] p-6 md:grid-cols-2 md:p-8">
           <div>

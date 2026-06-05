@@ -4,7 +4,7 @@ import PageFooter from "../components/PageFooter";
 import FaqSection from "../components/landing/FaqSection";
 
 export const metadata: Metadata = {
-  title: "FAQ — EduBoost by YAS TOGO",
+  title: "FAQ - EduBoost by YAS TOGO",
   description: "Questions fréquentes sur la tombola EduBoost de YAS TOGO.",
 };
 

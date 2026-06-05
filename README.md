@@ -1,6 +1,6 @@
 # GTE Frontend
 
-### La Grande Tombola pour l'Education — by YAS TOGO
+### La Grande Tombola pour l'Education - by YAS TOGO
 
 Interface web publique permettant aux participants d'acheter des tickets de tombola, de consulter leurs tickets via OTP SMS, et de suivre la confirmation de leur achat.
 
@@ -27,8 +27,8 @@ GTE (Grande Tombola pour l'Education) est une tombola solidaire nationale organi
 | TypeScript | 5.x | Typage statique |
 | Tailwind CSS | 4.x | Styles utilitaires |
 | Bootstrap Icons | 1.11.3 | Icônes (CDN) |
-| Montserrat | — | Police titres et CTA (Google Fonts) |
-| Poppins | — | Police corps de texte (Google Fonts) |
+| Montserrat | - | Police titres et CTA (Google Fonts) |
+| Poppins | - | Police corps de texte (Google Fonts) |
 | Vitest | 4.x | Tests unitaires |
 | Docker | ≥ 24 | Conteneurisation |
 
@@ -38,10 +38,10 @@ GTE (Grande Tombola pour l'Education) est une tombola solidaire nationale organi
 
 | Route | Description |
 |---|---|
-| `/` | Landing page — présentation GTE, lots, canaux, sponsors |
+| `/` | Landing page - présentation GTE, lots, canaux, sponsors |
 | `/ticket` | Formulaire d'achat (MIXX ou Crédit YAS Airtime) |
 | `/confirmation` | Récapitulatif après achat + codes tickets |
-| `/mes-tickets` | Espace participant — consulter ses tickets via OTP SMS |
+| `/mes-tickets` | Espace participant - consulter ses tickets via OTP SMS |
 
 ---
 
@@ -50,7 +50,7 @@ GTE (Grande Tombola pour l'Education) est une tombola solidaire nationale organi
 - **Landing page** fidèle aux maquettes : hero slideshow (10s, cross-fade), section lots 10M FCFA, canaux SMS/Web/USSD, CTA tirage, footer sponsors
 - **Page achat** : sélection MIXX ou Crédit YAS avec logos réels, drapeau Togo PNG, validation numéro togolais (préfixes 70-73, 78-79, 90-93, 96-99), honeypot anti-bot, protection double soumission
 - **Page confirmation** : codes tickets en grille, données sécurisées via `localStorage` TTL 5min
-- **Espace mes tickets** : flow OTP complet — saisie numéro → code SMS → liste des commandes depuis la DB
+- **Espace mes tickets** : flow OTP complet - saisie numéro → code SMS → liste des commandes depuis la DB
 - **Polling statut** : `AbortController` + timeout absolu 90s + gestion erreurs réseau
 - **Architecture modulaire** : hooks/, lib/, config/, types/ séparés
 - **46 tests Vitest** : composants (PaymentMethodSelector, PhoneInput, QuantityInput) + hooks (isValidTogoPhone, confirmation-store, useOtpAuth)
@@ -117,7 +117,7 @@ docker compose up -d --build
 # Accessible via Nginx → http://localhost/
 ```
 
-> En production Docker, `NEXT_PUBLIC_API_URL` est vide — Nginx route automatiquement les appels API vers le backend.
+> En production Docker, `NEXT_PUBLIC_API_URL` est vide - Nginx route automatiquement les appels API vers le backend.
 
 ---
 

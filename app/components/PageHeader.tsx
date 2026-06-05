@@ -16,7 +16,7 @@ export default function PageHeader({ secure = true }: PageHeaderProps) {
           <span className="text-[10px] font-extrabold tracking-[0.3em] text-[#00377D]">TOGO</span>
         </Link>
 
-        {/* Centre — wordmark EduBoost */}
+        {/* Centre - wordmark EduBoost */}
         <div className="text-center">
           <div className="flex items-center justify-center gap-1.5">
             <svg className="h-6 w-6 text-[#00377D]" viewBox="0 0 24 24" fill="currentColor">
@@ -30,7 +30,7 @@ export default function PageHeader({ secure = true }: PageHeaderProps) {
           <p className="mt-1 text-[11px] font-bold text-[#00377D]">BY YAS TOGO</p>
         </div>
 
-        {/* Droite — sécurité + lien mes tickets */}
+        {/* Droite - sécurité + lien mes tickets */}
         <div className="flex items-center gap-3 flex-shrink-0">
           {secure && (
             <div className="hidden sm:flex items-center gap-2">

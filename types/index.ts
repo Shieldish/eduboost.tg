@@ -1,4 +1,4 @@
-// types/index.ts — Interfaces TypeScript du projet GTE Frontend
+// types/index.ts - Interfaces TypeScript du projet GTE Frontend
 
 // ── Paiement ──────────────────────────────────────────────────────────────────
 
