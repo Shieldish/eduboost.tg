@@ -42,6 +42,8 @@ export default function HeroSlideshow() {
           style={{
             opacity:    i === active ? 1 : 0,
             transition: `opacity ${FADE_MS}ms ease-in-out`,
+            willChange: "opacity",
+            transform:  "translateZ(0)",  // force GPU layer — fix mobile Safari/Android
           }}
         />
       ))}

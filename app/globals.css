@@ -83,6 +83,12 @@ body {
 
 .shadow-card { box-shadow: 0 10px 30px -12px rgba(0,55,125,.25); }
 
+/* ── Sponsor marquee keyframes — utilisé via style inline dans SponsorMarquee.tsx ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
+}
+
 /* ── TICKET SHINE ─────────────────────────────────────────────────────── */
 .ticket-shine { position: relative; overflow: hidden; }
 .ticket-shine::after {

@@ -3,6 +3,17 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
 
+  // Proxy : toutes les requêtes /backend/* → backend Django sur localhost:8080
+  // Permet d'accéder depuis n'importe quelle IP LAN (mobile, tablette) sans CORS
+  async rewrites() {
+    return [
+      {
+        source: "/backend/:path*",
+        destination: "http://localhost:8080/:path*",
+      },
+    ];
+  },
+
   // Optimisation images : AVIF puis WebP automatique
   images: {
     formats: ["image/avif", "image/webp"],

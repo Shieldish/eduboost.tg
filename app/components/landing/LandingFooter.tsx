@@ -5,6 +5,7 @@ import {
   CalendarDays, MessageSquare, Smartphone,
 } from "lucide-react";
 import { SPONSORS_OFFICIELS, SPONSORS_MEDIAS } from "../../../constants/sponsors";
+import SponsorMarquee from "./SponsorMarquee";
 
 /* ── Icônes sociales (SVG inline — pas dans lucide-react v1) ── */
 function FacebookIcon() {
@@ -63,38 +64,21 @@ const NAV_LINKS = [
 
 export default function LandingFooter() {
   return (
-    <footer className="bg-[#0B1F5B]" id="sponsors">
+    <footer id="sponsors">
 
-      {/* ── SPONSORS ───────────────────────────────────────────────── */}
-      <div className="border-b border-white/10 py-8">
-        <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-center text-sm font-extrabold uppercase tracking-widest text-white mb-6">
-            Nos sponsors et partenaires
-          </h2>
-          <p className="text-center text-xs font-bold uppercase tracking-widest text-white/50 mb-3">
-            Sponsors officiels
-          </p>
-          <div className="grid grid-cols-2 items-center gap-3 sm:grid-cols-5">
-            {SPONSORS_OFFICIELS.map(({ src, alt }) => (
-              <div key={alt} className="sponsor-logo flex h-16 items-center justify-center rounded-xl border border-white/10 bg-white/5 p-3">
-                <Image src={src} alt={alt} width={96} height={40} className="max-h-10 w-auto object-contain" />
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-xs font-bold uppercase tracking-widest text-white/50 mt-6 mb-3">
-            Partenaires médias
-          </p>
-          <div className="grid grid-cols-2 items-center gap-3 sm:grid-cols-6">
-            {SPONSORS_MEDIAS.map(({ src, alt }) => (
-              <div key={alt} className="sponsor-logo flex h-16 items-center justify-center rounded-xl border border-white/10 bg-white/5 p-3">
-                <Image src={src} alt={alt} width={72} height={36} className="max-h-10 w-auto object-contain" />
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* ── SPONSORS CARROUSEL — fond blanc ────────────────────────── */}
+      <div className="bg-white py-8 border-b border-gray-100">
+        <h2 className="text-center text-sm font-extrabold uppercase tracking-widest text-[#00377D] mb-6">
+          Nos sponsors et partenaires
+        </h2>
+        <p className="text-center text-xs font-bold uppercase tracking-widest text-[#00377D]/50 mb-3">Sponsors officiels</p>
+        <SponsorMarquee items={SPONSORS_OFFICIELS} duration={30} />
+        <p className="text-center text-xs font-bold uppercase tracking-widest text-[#00377D]/50 mt-6 mb-3">Partenaires médias</p>
+        <SponsorMarquee items={SPONSORS_MEDIAS} reverse duration={25} />
       </div>
 
-      {/* ── 4 COLONNES ─────────────────────────────────────────────── */}
+      {/* ── 4 COLONNES — fond navy ──────────────────────────────────── */}
+      <div className="bg-[#0B1F5B]">
       <div className="py-10">
         <div className="mx-auto max-w-6xl px-4 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 
@@ -180,7 +164,7 @@ export default function LandingFooter() {
               www.eduboost.tg
             </div>
             {/* Tirage */}
-            <div className="mt-1 rounded-xl bg-white/8 border border-white/10 p-4 flex flex-col gap-1">
+            <div className="mt-1 rounded-xl bg-white/10 border border-white/10 p-4 flex flex-col gap-1">
               <div className="flex items-center gap-2 text-white/60 text-xs font-semibold">
                 <CalendarDays className="h-4 w-4 text-[#FFD100]" strokeWidth={1.8} />
                 Tirage au sort
@@ -203,6 +187,7 @@ export default function LandingFooter() {
           </div>
         </div>
       </div>
+      </div>{/* fin bg-navy */}
     </footer>
   );
 }
